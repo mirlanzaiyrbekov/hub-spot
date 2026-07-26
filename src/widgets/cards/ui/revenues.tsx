@@ -18,10 +18,10 @@ import { FC } from "react"
 
 export const Revenues: FC = () => {
 	return (
-		<Card className="@container/card shadow-xs rounded-md gap-3.5 py-3">
+		<Card className="shadow-xs rounded-md gap-3.5">
 			<CardHeader>
 				<CardDescription>Доходы</CardDescription>
-				<CardTitle className="text-2xl font-bold tabular-nums @[250px]/card:text-3xl">
+				<CardTitle className="text-3xl font-bold tabular-nums">
 					18 600 сом
 				</CardTitle>
 				<CardAction>
@@ -31,7 +31,7 @@ export const Revenues: FC = () => {
 					</Badge>
 				</CardAction>
 			</CardHeader>
-			<CardContent>
+			<CardContent className="px-2">
 				<ul className="grid gap-1.5 text-sm">
 					<li className="flex items-center gap-1.5">
 						<ChevronRightIcon className="mt-0.5 size-2 shrink-0" />

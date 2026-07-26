@@ -1,5 +1,5 @@
 import { IEmployee } from "@/entities/employees/types/employees.type"
-import { Checkbox } from "@/shared"
+import { Badge, Checkbox } from "@/shared"
 import { ColumnDef } from "@tanstack/react-table"
 
 export const columns: ColumnDef<IEmployee>[] = [
@@ -29,20 +29,33 @@ export const columns: ColumnDef<IEmployee>[] = [
 		enableHiding: false,
 	},
 	{
+		accessorKey: "image",
+		header: "Аватар",
+		cell: ({ row }) => (
+			<img
+				className="mx-auto"
+				width={40}
+				height={20}
+				src={row.original.image}
+				alt={row.original.firstName}
+			/>
+		),
+	},
+	{
 		accessorKey: "firstName",
 		header: "Имя",
 	},
 	{
 		accessorKey: "working",
-		header: "Статус работы",
+		header: "Статус",
 		cell: ({ row }) => {
 			const working = row.original.working
 			return (
 				<>
 					{working ? (
-						<span className="text-green-500">Работает</span>
+						<Badge className="bg-green-500 w-16 mx-auto">Работает</Badge>
 					) : (
-						<span className="text-purple-500">Не в смене</span>
+						<Badge className="bg-purple-500 w-20 mx-auto">Не в смене</Badge>
 					)}
 				</>
 			)

@@ -14,7 +14,6 @@ import { Link } from "react-router-dom"
 import { SidebarMenuType } from "../types/sidebar-menu-component"
 import { SidebarMenuComponent } from "./sidebar-menu"
 
-// This is sample data.
 const data: SidebarMenuType = {
 	items: [
 		{
@@ -29,7 +28,7 @@ const data: SidebarMenuType = {
 				},
 				{
 					title: "Сотрудники",
-					url: "/users",
+					url: "/employees",
 				},
 				{
 					title: "Аналитика",

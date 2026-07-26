@@ -6,7 +6,7 @@ export const ChangeTheme: FC = () => {
 	const { setTheme, theme } = useTheme()
 	return (
 		<Button
-			className="hidden lg:block dark:hover:bg-muted/0 hover:bg-muted/0"
+			className="dark:hover:bg-muted/0 hover:bg-muted/0"
 			onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
 			variant="ghost"
 			size="xs"

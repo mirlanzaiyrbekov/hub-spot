@@ -156,22 +156,19 @@ export const RevenueChart: FC = () => {
 	})
 
 	return (
-		<Card className="w-full min-h-80 rounded-md">
+		<Card className="rounded-md">
 			<CardHeader>
 				<CardTitle>Доход на графике</CardTitle>
 				<CardDescription>
-					<span className="hidden @[540px]/card:block">
-						Общее за последние 3 месяца
-					</span>
 					<span className="@[540px]/card:hidden">{timeRange}</span>
 				</CardDescription>
-				<CardAction>
+				<CardAction className="w-full">
 					<ToggleGroup
 						type="single"
 						value={timeRange}
 						onValueChange={setTimeRange}
 						variant="outline"
-						className="hidden *:data-[slot=toggle-group-item]:px-4! @[767px]/card:flex"
+						className="hidden *:data-[slot=toggle-group-item]:px-4! @[767px]/card:flex w-full"
 					>
 						<ToggleGroupItem value="90d">Последние 3 месяца</ToggleGroupItem>
 						<ToggleGroupItem value="30d">Последние 30 дней</ToggleGroupItem>
@@ -179,13 +176,13 @@ export const RevenueChart: FC = () => {
 					</ToggleGroup>
 					<Select value={timeRange} onValueChange={setTimeRange}>
 						<SelectTrigger
-							className="flex **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
+							className="rounded-sm flex **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
 							size="sm"
 							aria-label="Выбрать значение"
 						>
 							<SelectValue placeholder="Последние 3 месяца" />
 						</SelectTrigger>
-						<SelectContent className="rounded-xl">
+						<SelectContent className="rounded-md">
 							<SelectItem value="90d" className="rounded-lg">
 								Последние 3 месяца
 							</SelectItem>
@@ -199,10 +196,10 @@ export const RevenueChart: FC = () => {
 					</Select>
 				</CardAction>
 			</CardHeader>
-			<CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
+			<CardContent className="pt-4">
 				<ChartContainer
 					config={chartConfig}
-					className="aspect-auto h-62.5 w-full"
+					className="aspect-auto h-28 w-full 3xl:h-60.5"
 				>
 					<AreaChart data={filteredData}>
 						<defs>

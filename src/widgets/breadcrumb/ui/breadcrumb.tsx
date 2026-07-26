@@ -10,8 +10,8 @@ import { FC } from "react"
 
 export const BreadcrumbComponent: FC = () => {
 	return (
-		<Breadcrumb>
-			<BreadcrumbList>
+		<Breadcrumb className="hidden tablet:flex">
+			<BreadcrumbList className="flex items-end">
 				<BreadcrumbItem>
 					<BreadcrumbLink href="#">Home</BreadcrumbLink>
 				</BreadcrumbItem>

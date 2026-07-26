@@ -18,10 +18,10 @@ import { FC } from "react"
 
 export const Entries: FC = () => {
 	return (
-		<Card className="@container/card shadow-xs rounded-md gap-3.5 py-3">
+		<Card className="shadow-xs rounded-md gap-3.5">
 			<CardHeader>
 				<CardDescription>Записи</CardDescription>
-				<CardTitle className="text-2xl font-bold tabular-nums @[250px]/card:text-3xl">
+				<CardTitle className="text-3xl font-bold tabular-nums">
 					<div className="flex items-center gap-1.5">
 						26
 						<ClipboardPen className="size-5" />

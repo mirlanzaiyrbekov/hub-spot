@@ -30,10 +30,10 @@ const chartConfig = {
 } satisfies ChartConfig
 export const Customers: FC = () => {
 	return (
-		<Card className="@container/card shadow-xs rounded-md gap-3.5 py-3">
+		<Card className="shadow-xs rounded-md gap-3.5">
 			<CardHeader>
 				<CardDescription>Клиенты</CardDescription>
-				<CardTitle className="text-2xl font-bold tabular-nums @[250px]/card:text-3xl">
+				<CardTitle className="text-3xl font-bold tabular-nums">
 					<div className="flex items-center gap-1.5">
 						15
 						<UserRound className="size-5" />

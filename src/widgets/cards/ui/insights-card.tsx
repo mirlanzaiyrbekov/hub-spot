@@ -10,13 +10,13 @@ import { FC } from "react"
 
 export const InsightsCard: FC = () => {
 	return (
-		<Card className="@container/card shadow-xs rounded-md gap-3.5 py-3">
+		<Card className="shadow-xs rounded-md gap-3.5">
 			<CardHeader>
 				<CardDescription className="flex items-center gap-2">
 					<TriangleAlert className="size-4 text-purple-700" />
 					Требует внимания
 				</CardDescription>
-				<CardTitle className="text-2xl font-bold tabular-nums @[250px]/card:text-3xl">
+				<CardTitle className="text-3xl font-bold tabular-nums">
 					<div className="flex items-center gap-1.5 text-purple-700">
 						<Minus className="size-5 mt-1" />
 						4.320 сом
