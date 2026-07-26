@@ -1,44 +1,33 @@
 import { IEmployee } from "@/entities/employees/types/employees.type"
-import { Badge, Checkbox } from "@/shared"
+import {
+	Avatar,
+	AvatarImage,
+	Badge,
+	Button,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/shared"
 import { ColumnDef } from "@tanstack/react-table"
+import {
+	Ban,
+	ClipboardPen,
+	MessageSquareMore,
+	MoreHorizontal,
+	UserRoundPen,
+} from "lucide-react"
 
 export const columns: ColumnDef<IEmployee>[] = [
 	{
-		id: "select",
-		accessorKey: "id",
-		header: ({ table }) => (
-			<div>
-				<Checkbox
-					checked={
-						table.getIsAllPageRowsSelected() ||
-						(table.getIsSomePageRowsSelected() && "indeterminate")
-					}
-					onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-					aria-label="Выбрать все"
-				/>
-			</div>
-		),
-		cell: ({ row }) => (
-			<Checkbox
-				checked={row.getIsSelected()}
-				onCheckedChange={(value) => row.toggleSelected(!!value)}
-				aria-label="Выбрать колонку"
-			/>
-		),
-		enableSorting: false,
-		enableHiding: false,
-	},
-	{
 		accessorKey: "image",
-		header: "Аватар",
+		header: "Изображение",
 		cell: ({ row }) => (
-			<img
-				className="mx-auto"
-				width={40}
-				height={20}
-				src={row.original.image}
-				alt={row.original.firstName}
-			/>
+			<Avatar className="mx-auto" size="lg">
+				<AvatarImage src={row.original.image} alt={row.original.firstName} />
+			</Avatar>
 		),
 	},
 	{
@@ -53,7 +42,7 @@ export const columns: ColumnDef<IEmployee>[] = [
 			return (
 				<>
 					{working ? (
-						<Badge className="bg-green-500 w-16 mx-auto">Работает</Badge>
+						<Badge className="bg-green-500 w-16 mx-auto">На смене</Badge>
 					) : (
 						<Badge className="bg-purple-500 w-20 mx-auto">Не в смене</Badge>
 					)}
@@ -69,5 +58,47 @@ export const columns: ColumnDef<IEmployee>[] = [
 	{
 		accessorKey: "phone",
 		header: "Телефон",
+	},
+	{
+		id: "actions",
+		header: "Действия",
+		cell: ({ row }) => {
+			const payment = row.original
+			return (
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant="ghost" className="h-8 w-8 p-0">
+							<span className="sr-only">Открыть меню</span>
+							<MoreHorizontal className="h-4 w-4" />
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="end" className="rounded-sm w-full">
+						<DropdownMenuLabel>Действия</DropdownMenuLabel>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem
+							onClick={() => navigator.clipboard.writeText(String(payment.id))}
+						>
+							<MessageSquareMore />
+							Отправить сообщение
+						</DropdownMenuItem>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem>
+							<UserRoundPen />
+							Просмотр карточки сотрудника
+						</DropdownMenuItem>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem>
+							<ClipboardPen />
+							Запись сотруднику
+						</DropdownMenuItem>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem className="text-purple-700">
+							<Ban />
+							Отправить в бан (штраф)
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
+			)
+		},
 	},
 ]
