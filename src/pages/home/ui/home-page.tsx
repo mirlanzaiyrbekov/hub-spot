@@ -49,6 +49,24 @@ export const Home: FC = () => {
 							},
 						},
 						{
+							age: 29,
+							email: "duisenova.ak@gmail.com",
+							firstName: "Akcholpon",
+							id: 35,
+							image:
+								"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMvlAY8Hicdaga--d8JLl_iXtOlbbFK32iUrawHUe2qg5H-0QmhVVvHOh&s=10",
+							lastName: "Duisenova",
+							phone: "0995960211",
+							working: false,
+							address: {
+								city: "Bishkek",
+								postalCode: "412421",
+								state: "Chui",
+								stateCode: "312",
+								street: "Phuchic",
+							},
+						},
+						{
 							age: 22,
 							email: "mirlan@gmail.com",
 							firstName: "Mirlan2",

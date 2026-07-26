@@ -7,7 +7,6 @@ import {
 	Card,
 	CardAction,
 	CardContent,
-	CardDescription,
 	CardHeader,
 	CardTitle,
 	ChartContainer,
@@ -18,8 +17,6 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-	ToggleGroup,
-	ToggleGroupItem,
 	type ChartConfig,
 } from "@/shared"
 import { useIsMobile } from "@/shared/hooks/use-mobile"
@@ -159,47 +156,33 @@ export const RevenueChart: FC = () => {
 		<Card className="rounded-md">
 			<CardHeader>
 				<CardTitle>Доход на графике</CardTitle>
-				<CardDescription>
-					<span className="@[540px]/card:hidden">{timeRange}</span>
-				</CardDescription>
 				<CardAction className="w-full">
-					<ToggleGroup
-						type="single"
-						value={timeRange}
-						onValueChange={setTimeRange}
-						variant="outline"
-						className="hidden *:data-[slot=toggle-group-item]:px-4! @[767px]/card:flex w-full"
-					>
-						<ToggleGroupItem value="90d">Последние 3 месяца</ToggleGroupItem>
-						<ToggleGroupItem value="30d">Последние 30 дней</ToggleGroupItem>
-						<ToggleGroupItem value="7d">Последние 7 дней</ToggleGroupItem>
-					</ToggleGroup>
 					<Select value={timeRange} onValueChange={setTimeRange}>
 						<SelectTrigger
-							className="rounded-sm flex **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
+							className="rounded-sm flex **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden text-xs"
 							size="sm"
 							aria-label="Выбрать значение"
 						>
 							<SelectValue placeholder="Последние 3 месяца" />
 						</SelectTrigger>
 						<SelectContent className="rounded-md">
-							<SelectItem value="90d" className="rounded-lg">
+							<SelectItem value="90d" className="rounded-lg text-sm">
 								Последние 3 месяца
 							</SelectItem>
-							<SelectItem value="30d" className="rounded-lg">
+							<SelectItem value="30d" className="rounded-lg text-sm">
 								Последние 30 дней
 							</SelectItem>
-							<SelectItem value="7d" className="rounded-lg">
+							<SelectItem value="7d" className="rounded-lg text-sm">
 								Последние 7 дней
 							</SelectItem>
 						</SelectContent>
 					</Select>
 				</CardAction>
 			</CardHeader>
-			<CardContent className="pt-4">
+			<CardContent>
 				<ChartContainer
 					config={chartConfig}
-					className="aspect-auto h-28 w-full 3xl:h-60.5"
+					className="aspect-auto h-32 w-full 3xl:h-60.5"
 				>
 					<AreaChart data={filteredData}>
 						<defs>
