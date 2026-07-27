@@ -13,7 +13,7 @@ export const Layout: FC = () => {
 					<SidebarInset className="bg-sidebar p-2">
 						<main className="rounded-lg shadow-sm border bg-background min-h-screen h-full">
 							<AppBar />
-							<div className="mx-auto w-full max-w-360 px-2 py-4">
+							<div className="px-3 py-4">
 								<Outlet />
 							</div>
 						</main>

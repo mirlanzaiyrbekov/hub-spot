@@ -1,45 +1,40 @@
 import {
-	Badge,
-	Button,
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
+	DropdownMenuItem,
+	Sheet,
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
 } from "@/shared"
-import { UserIcon } from "lucide-react"
-import { FC } from "react"
-import { IEmployee } from "../types/employees.type"
+import { UserRoundPen } from "lucide-react"
+import { FC, useState } from "react"
 
-interface IUsersCardProps {
-	user: IEmployee
-}
-export const EmployeCard: FC<IUsersCardProps> = ({ user }) => {
+export const EmployeCard: FC = () => {
+	const [open, setOpen] = useState(false)
 	return (
-		<Card key={user.id} className="relative overflow-hidden">
-			<img
-				src={user.image}
-				alt={user.username}
-				className="relative z-20 aspect-video w-full object-cover brightness-60 grayscale dark:brightness-40"
-			/>
-			<CardHeader className="flex items-center gap-2">
-				<UserIcon size={16} />
-				<CardTitle className="w-32 line-clamp-1 text-ellipsis">
-					{user.username}
-				</CardTitle>
-			</CardHeader>
-			<CardContent className="flex flex-col gap-2">
-				<CardDescription className="xs:line-clamp-1">
-					{user.company.name}
-				</CardDescription>
-				<Badge variant="default">{user.email}</Badge>
-			</CardContent>
-			<CardFooter>
-				<Button className="w-full rounded-xl" variant={"outline"}>
-					Просмотр
-				</Button>
-			</CardFooter>
-		</Card>
+		<Sheet>
+			<SheetTrigger asChild>
+				<DropdownMenuItem
+					onSelect={(e) => {
+						e.preventDefault()
+						setOpen(true)
+					}}
+				>
+					<UserRoundPen />
+					Просмотр карточки сотрудника
+				</DropdownMenuItem>
+			</SheetTrigger>
+			<SheetContent side="left">
+				<SheetHeader>
+					<SheetTitle>Are you absolutely sure?</SheetTitle>
+					<SheetDescription>This action cannot be undone.</SheetDescription>
+				</SheetHeader>
+				<div className="grid flex-1 auto-rows-min gap-6 px-4">
+					<div className="grid gap-3">User</div>
+					<div className="grid gap-3">User LastName</div>
+				</div>
+			</SheetContent>
+		</Sheet>
 	)
 }

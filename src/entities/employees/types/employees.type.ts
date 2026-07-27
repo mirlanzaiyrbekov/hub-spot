@@ -8,6 +8,7 @@ export interface IEmployee {
 	image: string
 	address: Address
 	working?: boolean
+	profit?: number
 }
 
 export interface Address {

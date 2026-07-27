@@ -1,3 +1,4 @@
+import { EmployeCard } from "@/entities/employees"
 import { IEmployee } from "@/entities/employees/types/employees.type"
 import {
 	Avatar,
@@ -17,7 +18,7 @@ import {
 	ClipboardPen,
 	MessageSquareMore,
 	MoreHorizontal,
-	UserRoundPen,
+	Plus,
 } from "lucide-react"
 
 export const columns: ColumnDef<IEmployee>[] = [
@@ -44,7 +45,7 @@ export const columns: ColumnDef<IEmployee>[] = [
 					{working ? (
 						<Badge className="bg-green-500 w-16 mx-auto">На смене</Badge>
 					) : (
-						<Badge className="bg-purple-500 w-20 mx-auto">Не в смене</Badge>
+						<Badge className="bg-purple-500 w-20 mx-auto">Вне смены</Badge>
 					)}
 				</>
 			)
@@ -52,18 +53,26 @@ export const columns: ColumnDef<IEmployee>[] = [
 	},
 
 	{
-		accessorKey: "email",
-		header: "Email",
-	},
-	{
 		accessorKey: "phone",
 		header: "Телефон",
 	},
 	{
+		accessorKey: "profit",
+		header: "Прибыль за смену",
+		cell: ({ row }) => (
+			<div className="flex items-center gap-1.5 justify-center">
+				<span className="font-medium flex items-center">
+					<Plus className="size-3.5 text-green-700" />
+					{row.original.profit}
+				</span>
+				<b className="text-xs font-bold">сом</b>
+			</div>
+		),
+	},
+	{
 		id: "actions",
 		header: "Действия",
-		cell: ({ row }) => {
-			const payment = row.original
+		cell: () => {
 			return (
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
@@ -75,17 +84,12 @@ export const columns: ColumnDef<IEmployee>[] = [
 					<DropdownMenuContent align="end" className="rounded-sm w-full">
 						<DropdownMenuLabel>Действия</DropdownMenuLabel>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem
-							onClick={() => navigator.clipboard.writeText(String(payment.id))}
-						>
+						<DropdownMenuItem>
 							<MessageSquareMore />
 							Отправить сообщение
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem>
-							<UserRoundPen />
-							Просмотр карточки сотрудника
-						</DropdownMenuItem>
+						<EmployeCard />
 						<DropdownMenuSeparator />
 						<DropdownMenuItem>
 							<ClipboardPen />
