@@ -3,7 +3,6 @@ import { IEmployee } from "@/entities/employees/types/employees.type"
 import {
 	Avatar,
 	AvatarImage,
-	Badge,
 	Button,
 	DropdownMenu,
 	DropdownMenuContent,
@@ -20,6 +19,7 @@ import {
 	MoreHorizontal,
 	Plus,
 } from "lucide-react"
+import { EmployeeStatus } from "./employee-status"
 
 export const columns: ColumnDef<IEmployee>[] = [
 	{
@@ -40,15 +40,7 @@ export const columns: ColumnDef<IEmployee>[] = [
 		header: "Статус",
 		cell: ({ row }) => {
 			const working = row.original.working
-			return (
-				<>
-					{working ? (
-						<Badge className="bg-green-500 w-16 mx-auto">На смене</Badge>
-					) : (
-						<Badge className="bg-purple-500 w-20 mx-auto">Вне смены</Badge>
-					)}
-				</>
-			)
+			return <EmployeeStatus status={working} />
 		},
 	},
 
@@ -72,7 +64,7 @@ export const columns: ColumnDef<IEmployee>[] = [
 	{
 		id: "actions",
 		header: "Действия",
-		cell: () => {
+		cell: ({ row }) => {
 			return (
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
@@ -89,7 +81,7 @@ export const columns: ColumnDef<IEmployee>[] = [
 							Отправить сообщение
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
-						<EmployeCard />
+						<EmployeCard id={row.original.id} />
 						<DropdownMenuSeparator />
 						<DropdownMenuItem>
 							<ClipboardPen />

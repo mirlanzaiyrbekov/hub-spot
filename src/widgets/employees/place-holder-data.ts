@@ -1,4 +1,6 @@
-export const columnData = [
+import { IEmployee } from "@/entities/employees/types/employees.type"
+
+export const columnData: IEmployee[] = [
 	{
 		age: 31,
 		email: "mirlan@gmail.com",
@@ -10,6 +12,7 @@ export const columnData = [
 		phone: "0505342345",
 		working: true,
 		profit: 3654.6,
+		role: "employee",
 		address: {
 			city: "Bishkek",
 			postalCode: "412421",
@@ -29,6 +32,7 @@ export const columnData = [
 		phone: "0995960211",
 		working: false,
 		profit: 2654.12,
+		role: "admin",
 		address: {
 			city: "Bishkek",
 			postalCode: "412421",
@@ -48,6 +52,7 @@ export const columnData = [
 		phone: "0505342345",
 		working: false,
 		profit: 1250.95,
+		role: "owner",
 		address: {
 			city: "Bishkek",
 			postalCode: "412421",
@@ -67,6 +72,7 @@ export const columnData = [
 		phone: "0521456652",
 		working: true,
 		profit: 4342.95,
+		role: "employee",
 		address: {
 			city: "Bishkek",
 			postalCode: "412421",

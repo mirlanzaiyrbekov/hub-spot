@@ -9,6 +9,7 @@ export interface IEmployee {
 	address: Address
 	working?: boolean
 	profit?: number
+	role: "owner" | "admin" | "employee"
 }
 
 export interface Address {
