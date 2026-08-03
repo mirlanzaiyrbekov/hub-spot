@@ -10,6 +10,7 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "@/shared"
+import { EmptyComponent } from "@/widgets"
 import { columnData } from "@/widgets/employees/place-holder-data"
 import { UserRoundPen } from "lucide-react"
 import { FC, useEffect, useState } from "react"
@@ -36,18 +37,24 @@ export const EmployeCard: FC<{ id: number }> = ({ id }) => {
 				</DropdownMenuItem>
 			</SheetTrigger>
 			<SheetContent side="left">
-				<SheetHeader>
-					<SheetTitle className="flex items-center gap-2">
-						<Avatar size="lg">
-							<AvatarImage src={user?.image} alt={user?.firstName} />
-						</Avatar>
-						<span className="font-bold">{user?.firstName}</span>
-					</SheetTitle>
-					<SheetDescription className="flex items-center gap-2">
-						<Badge className="pb-0.5">{user?.role}</Badge>
-					</SheetDescription>
-				</SheetHeader>
-				<EmployeItems user={user || {}} />
+				{user ? (
+					<>
+						<SheetHeader>
+							<SheetTitle className="flex items-center gap-2">
+								<Avatar size="lg">
+									<AvatarImage src={user.image} alt={user.firstName} />
+								</Avatar>
+								<span className="font-bold">{user.firstName}</span>
+							</SheetTitle>
+							<SheetDescription className="flex items-center gap-2">
+								<Badge className="pb-0.5">{user.role}</Badge>
+							</SheetDescription>
+						</SheetHeader>
+						<EmployeItems user={user} />
+					</>
+				) : (
+					<EmptyComponent />
+				)}
 			</SheetContent>
 		</Sheet>
 	)

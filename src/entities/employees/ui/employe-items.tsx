@@ -70,9 +70,9 @@ export const EmployeItems: FC<{ user: IEmployee }> = ({ user }) => {
 					<ItemTitle>
 						<Info className="size-4" />
 						Статус
+						<EmployeeStatus status={user.working} />
 					</ItemTitle>
 					<ItemDescription className="flex items-center gap-3">
-						<EmployeeStatus status={user?.working} />
 						<small>осталось 2 дня</small>
 					</ItemDescription>
 				</ItemContent>
