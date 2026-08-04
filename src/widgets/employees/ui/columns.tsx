@@ -1,24 +1,15 @@
-import { EmployeCard } from "@/entities/employees"
 import { IEmployee } from "@/entities/employees/types/employees.type"
 import {
 	Avatar,
 	AvatarImage,
 	Button,
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
 } from "@/shared"
 import { ColumnDef } from "@tanstack/react-table"
-import {
-	Ban,
-	ClipboardPen,
-	MessageSquareMore,
-	MoreHorizontal,
-	Plus,
-} from "lucide-react"
+import { MoveRight, Plus, UserRound } from "lucide-react"
+import { Link } from "react-router-dom"
 import { EmployeeStatus } from "./employee-status"
 
 export const columns: ColumnDef<IEmployee>[] = [
@@ -63,37 +54,25 @@ export const columns: ColumnDef<IEmployee>[] = [
 	},
 	{
 		id: "actions",
-		header: "Действия",
+		header: "Просмотр",
 		cell: ({ row }) => {
 			return (
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button variant="ghost" className="h-8 w-8 p-0">
-							<span className="sr-only">Открыть меню</span>
-							<MoreHorizontal className="h-4 w-4" />
-						</Button>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end" className="rounded-sm w-full">
-						<DropdownMenuLabel>Действия</DropdownMenuLabel>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem>
-							<MessageSquareMore />
-							Отправить сообщение
-						</DropdownMenuItem>
-						<DropdownMenuSeparator />
-						<EmployeCard id={row.original.id} />
-						<DropdownMenuSeparator />
-						<DropdownMenuItem>
-							<ClipboardPen />
-							Запись сотруднику
-						</DropdownMenuItem>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem className="text-purple-700">
-							<Ban />
-							Отправить в бан (штраф)
-						</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<Link
+							to={`/employee/${row.original.id}`}
+							className="flex justify-center"
+						>
+							<Button variant="outline" size="xs" className="flex items-center">
+								<UserRound />
+								<MoveRight />
+							</Button>
+						</Link>
+					</TooltipTrigger>
+					<TooltipContent side="left">
+						Просмотр карточки сотрудника
+					</TooltipContent>
+				</Tooltip>
 			)
 		},
 	},

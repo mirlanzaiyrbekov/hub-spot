@@ -42,24 +42,26 @@ export const EmployeItems: FC<{ user: IEmployee }> = ({ user }) => {
 			</Tooltip>
 			<Item variant="outline">
 				<ItemContent>
-					<ItemTitle>Показатели</ItemTitle>
+					<ItemTitle>Общие показатели</ItemTitle>
 					<ItemDescription className="text-primary">
 						<ul className="flex flex-col gap-1 py-2">
 							<li className="flex items-center justify-between">
-								<span className="text-muted-foreground">
-									прибыль за 28.07.2025
+								<span className="text-xs text-muted-foreground">
+									прибыль за сегодня
 								</span>
-								<span className="font-medium ">1242.0 KGS</span>
+								<span className="font-medium text-sm">1242.0 KGS</span>
 							</li>
 							<li className="flex items-center justify-between">
-								<span className="text-muted-foreground">
+								<span className="text-xs text-muted-foreground">
 									прибыль за три месяца
 								</span>
-								<span className="font-medium ">14523.5 KGS</span>
+								<span className="font-medium text-sm">14523.5 KGS</span>
 							</li>
 							<li className="flex items-center justify-between">
-								<span className="text-muted-foreground">прибыль за неделю</span>
-								<span className="font-medium ">3252.2 KGS</span>
+								<span className="text-xs text-muted-foreground">
+									прибыль за неделю
+								</span>
+								<span className="font-medium text-sm">3252.2 KGS</span>
 							</li>
 						</ul>
 					</ItemDescription>
@@ -68,11 +70,13 @@ export const EmployeItems: FC<{ user: IEmployee }> = ({ user }) => {
 			<Item variant="outline">
 				<ItemContent className="flex items-start gap-3">
 					<ItemTitle>
-						<Info className="size-4" />
-						Статус
 						<EmployeeStatus status={user.working} />
 					</ItemTitle>
-					<ItemDescription className="flex items-center gap-3">
+					<ItemDescription className="flex items-center justify-between w-full">
+						<div className="flex items-center gap-1">
+							<Info className="size-3" />
+							Статус
+						</div>
 						<small>осталось 2 дня</small>
 					</ItemDescription>
 				</ItemContent>
