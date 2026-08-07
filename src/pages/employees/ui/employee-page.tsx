@@ -12,9 +12,9 @@ import {
 	ItemTitle,
 	Separator,
 } from "@/shared"
-import { EmployeeStatus } from "@/widgets"
+import { Customers, EmployeeStatus } from "@/widgets"
 import { columnData } from "@/widgets/employees/place-holder-data"
-import { Ban, Pencil } from "lucide-react"
+import { AlarmCheck, Ban, Calendar, Pencil } from "lucide-react"
 import { FC, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
@@ -35,110 +35,105 @@ export const EmployeePage: FC = () => {
 			<section>
 				<div className="grid grid-cols-[auto_320px] gap-2">
 					<Card>
-						<CardContent className="items-end min-w-80 grid grid-cols-4">
-							<Item className="flex flex-col items-center border-muted">
-								<Avatar className="size-14">
-									<AvatarImage src={user?.image} alt={user?.firstName} />
-									<AvatarFallback>CN</AvatarFallback>
-								</Avatar>
+						<CardContent className="grid grid-cols-[1fr_320px_1fr] gap-1.5 items-end min-w-80">
+							<div className="flex items-end">
+								<Item className="flex flex-col">
+									<Avatar className="size-14 mx-auto">
+										<AvatarImage src={user?.image} alt={user?.firstName} />
+										<AvatarFallback>CN</AvatarFallback>
+									</Avatar>
+									<ItemContent>
+										<ItemTitle className="flex items-center justify-center w-full">
+											{user?.lastName}
+											<b>{user?.firstName}</b>
+										</ItemTitle>
+										<ItemDescription className="flex items-center justify-center gap-1 flex-col text-xs text-muted-foreground">
+											<span className="flex gap-1.5 font-bold text-xs">
+												Позиция: <b>{user?.role}</b>
+											</span>
+											<div className="flex items-center gap-1.5 my-1.5">
+												{user?.address.city}
+												<Separator orientation="vertical" />
+												{user?.address.street}
+												<Separator orientation="vertical" />
+												{user?.phone}
+											</div>
+										</ItemDescription>
+									</ItemContent>
+								</Item>
+								<Item>
+									<ItemContent>
+										<ItemTitle>Информация</ItemTitle>
+										<ItemDescription className="text-xs text-muted-foreground flex gap-2">
+											Должность:
+											<b>Барбер</b>
+										</ItemDescription>
+										<ItemDescription className="text-xs text-muted-foreground flex gap-2">
+											Статус:
+											<EmployeeStatus />
+										</ItemDescription>
+										<ItemDescription className="text-xs text-muted-foreground flex gap-2">
+											Телефон:
+											<b>{user?.phone}</b>
+										</ItemDescription>
+									</ItemContent>
+								</Item>
+							</div>
+							<Item>
 								<ItemContent>
-									<ItemTitle className="flex items-center justify-center w-full">
-										{user?.lastName}
-										<b>{user?.firstName}</b>
-									</ItemTitle>
-									<ItemDescription className="flex items-center justify-center gap-1 flex-col text-xs text-muted-foreground">
-										<span className="flex gap-1.5 font-bold text-xs">
-											Позиция: <b>{user?.role}</b>
-										</span>
-										<div className="flex items-center gap-1.5 my-1.5">
-											{user?.address.city}
-											<Separator orientation="vertical" />
-											{user?.address.street}
-											<Separator orientation="vertical" />
-											{user?.phone}
-										</div>
+									<ItemTitle>Уровень дохода</ItemTitle>
+									<ItemDescription className="text-xs text-muted-foreground flex gap-2">
+										Доход за три месяца:
+										<b>12312.3 сом</b>
+									</ItemDescription>
+									<ItemDescription className="text-xs text-muted-foreground flex gap-2">
+										Доход с 10.03.2022 по 17.03.2022:
+										<b>3242.3 сом</b>
+									</ItemDescription>
+									<ItemDescription className="text-xs text-muted-foreground flex gap-2">
+										Примерный профит до конца смены:
+										<b>1231.2 сом</b>
 									</ItemDescription>
 								</ItemContent>
 							</Item>
 							<Item>
 								<ItemContent>
-									<ItemTitle>
-										Профит:
-										<span className="font-bold text-green-700">
-											{user?.profit} сом
-										</span>
-									</ItemTitle>
-									<ItemDescription className="text-xs text-muted-foreground">
-										{user?.email}
+									<ItemTitle>Уровень дохода</ItemTitle>
+									<ItemDescription className="text-xs text-muted-foreground flex gap-2">
+										Доход за три месяца:
+										<b>12312.3 сом</b>
 									</ItemDescription>
-									<ItemDescription className="text-xs text-muted-foreground">
-										{user?.email}
+									<ItemDescription className="text-xs text-muted-foreground flex gap-2">
+										Доход с 10.03.2022 по 17.03.2022:
+										<b>3242.3 сом</b>
 									</ItemDescription>
-									<ItemDescription className="text-xs text-muted-foreground">
-										{user?.email}
+									<ItemDescription className="text-xs text-muted-foreground flex gap-2">
+										Примерный профит до конца смены:
+										<b>1231.2 сом</b>
 									</ItemDescription>
 								</ItemContent>
 							</Item>
-							<Item>
-								<ItemContent>
-									<ItemTitle>
-										Профит:
-										<span className="font-bold text-green-700">
-											{user?.profit} сом
-										</span>
-									</ItemTitle>
-									<ItemDescription className="text-xs text-muted-foreground">
-										{user?.email}
-									</ItemDescription>
-								</ItemContent>
-							</Item>
-							<Item>
-								<ItemContent className="flex-row">
-									<ItemDescription className="flex flex-col text-xs text-muted-foreground">
-										<span>{user?.email}</span>
-										<span>{user?.email}</span>
-										<span>{user?.email}</span>
-									</ItemDescription>
-									<div className="flex flex-col">
-										<Button variant="outline" size="sm">
-											Редактировать
-											<Pencil />
-										</Button>
-										<Button variant="outline" size="sm">
-											Штраф (Бан)
-											<Ban />
-										</Button>
-									</div>
-								</ItemContent>
-							</Item>
+							<div className="flex gap-2">
+								<Button variant="outline" className="rounded-sm text-xs">
+									Отправить уведомление
+									<AlarmCheck />
+								</Button>
+								<Button variant="outline" className="rounded-sm text-xs">
+									Редактировать
+									<Pencil />
+								</Button>
+								<Button variant="outline" className="rounded-md text-xs">
+									Назначить смену
+									<Calendar />
+								</Button>
+								<Button variant="outline" className="rounded-md text-xs ">
+									Штраф (Бан)
+									<Ban />
+								</Button>
+							</div>
 						</CardContent>
 					</Card>
-					<Card>
-						<CardContent className="px-1">
-							<ul className="flex flex-col gap-1 py-2">
-								<li className="flex items-center justify-between">
-									<span className="text-xs text-muted-foreground">Сегодня</span>
-									<EmployeeStatus status={user?.working} />
-								</li>
-								<li className="flex items-center justify-between">
-									<span className="text-xs text-muted-foreground">Пришел</span>
-									<span className="font-medium text-sm">09:02</span>
-								</li>
-								<li className="flex items-center justify-between">
-									<span className="text-xs text-muted-foreground">
-										Рабочее время
-									</span>
-									<span className="font-medium text-sm">6ч 23м</span>
-								</li>
-								<li className="flex items-center justify-between">
-									<span className="text-xs text-muted-foreground">
-										Опоздание
-									</span>
-									<span className="font-medium text-sm">2м</span>
-								</li>
-							</ul>
-						</CardContent>
-					</Card>
+					<Customers />
 				</div>
 			</section>
 		</>

@@ -7,9 +7,9 @@ export const EmployeeStatus: FC<{ status?: boolean }> = ({
 	return (
 		<>
 			{status ? (
-				<Badge className="bg-green-500 w-16 mx-auto">На смене</Badge>
+				<Badge className="bg-green-500 w-16">На смене</Badge>
 			) : (
-				<Badge className="bg-purple-500 w-20 mx-auto">Отдых</Badge>
+				<Badge className="bg-purple-500 w-20">Отдых</Badge>
 			)}
 		</>
 	)
